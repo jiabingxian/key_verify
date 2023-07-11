@@ -3,7 +3,7 @@ import base64
 import datetime
 c=0
 
-def add(name,y=9999,m=12,m1=31):
+def add(name,y=9999,m=12,n=31):
     b = random.randint(100000, 999999)
     text = [name,b]
     a=int(text[1]) * 2 // 5
