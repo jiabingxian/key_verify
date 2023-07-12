@@ -3,7 +3,7 @@ import base64
 import datetime
 c=0
 
-def add(name,y=9999,m=12,n=31):
+def add(name,y=9999,m=12,d=31):
     b = random.randint(100000, 999999)
     text = [name,b]
     a=int(text[1]) * 2 // 5
@@ -33,7 +33,7 @@ def if_key(value,all=False,turpe=False):
     text = value.split(',')
     if len(text) < 7:  # 标准卡号被Base64解码后应为8条
         return '格式错误'
-    data={'name':text[0],'card':text[1],'checksum':text[2],'cida':text[3],'date':str(text[4:7]),'info':''}
+    data={'name':text[0],'card':text[1],'checksum':text[2],'cida':text[3],'date':date.isoformat(),'info':''}
     if all:
         print(data[0]+'\n'+data[1]+'\n'+data[2]+'\n'+data[3]+'\n'+data[4])
     time = datetime.date(int(text[4]), int(text[5]), int(text[6]))
@@ -74,8 +74,8 @@ def tui():
         name = str(input('姓名：'))
         y = int(input('年：'))
         m = int(input('月：'))
-        m1 = int(input('日：'))
-        n = add(name, y, m, m1)
+        d = int(input('日：'))
+        n = add(name, y, m, d)
         print(n)
     elif a=='if':
         value = input('请输入二维码：')
