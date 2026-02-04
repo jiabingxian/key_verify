@@ -1,6 +1,6 @@
-import random
+
 import base64
-import datetime
+
 class Card:
     def __init__(self,name:str,id:int,y:int,m:int,d:int):
         self.name=name
@@ -22,11 +22,23 @@ class Card:
         self.cida=a*2
     def encode(self):
         self.calc()
-        n = str(self.name) + ',' + str(self.id) + ',' + str(self.verifyid) + ',' + str(self.cida) + ',' + str(self.y) + ',' + str(self.m) + ',' + str(self.d)
+        n = f"{self.name},{self.id},{self.verifyid},{self.cida},{self.y},{self.m},{self.d}"
         n = n.encode('utf-8')
         n = base64.b64encode(n)
         n=str(n, 'utf-8')
         return n
+    def decode(self,code:str):
+        n = code.encode('utf-8')
+        n = base64.b64decode(n)
+        n=str(n, 'utf-8')
+        n=n.split(',')
+        self.name=n[0]
+        self.id=int(n[1])
+        self.verifyid=int(n[2])
+        self.cida=int(n[3])
+        self.y=int(n[4])
+        self.m=int(n[5])
+        self.d=int(n[6])
     def __str__(self):
         return self.encode()
     def info(self):
