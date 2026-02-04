@@ -1,5 +1,5 @@
-
 import base64
+import datetime
 
 class Card:
     def __init__(self,name:str,id:int,y:int,m:int,d:int):
@@ -57,3 +57,7 @@ class Card:
             return True
         else:
             return False
+    def date_verify(self):
+        today = datetime.date.today()
+        expire_date = datetime.date(self.y, self.m, self.d)
+        return today >= expire_date
