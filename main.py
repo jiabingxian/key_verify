@@ -32,7 +32,10 @@ class Card:
         return card
     def decode(self,code:str):
         n = code.encode('utf-8')
-        n = base64.b64decode(n)
+        try:
+            n = base64.b64decode(n)
+        except base64.binascii.Error as e:
+            raise ValueError("解码错误，{}".format(e))
         n=str(n, 'utf-8')
         n=n.split(',')
         self.name=n[0]
