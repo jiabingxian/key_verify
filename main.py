@@ -24,9 +24,12 @@ class Card:
         self.calc()
         n = f"{self.name},{self.id},{self.verifyid},{self.cida},{self.y},{self.m},{self.d}"
         n = n.encode('utf-8')
-        n = base64.b64encode(n)
-        n=str(n, 'utf-8')
-        return n
+        try:
+            card = base64.b64encode(n)
+        except base64.binascii.Error as e:
+            raise ValueError("编码错误，{}".format(e))
+        card=str(card, 'utf-8')
+        return card
     def decode(self,code:str):
         n = code.encode('utf-8')
         n = base64.b64decode(n)
